@@ -3,8 +3,7 @@
 A modern and responsive News Aggregator application built with **React**, **Vite**, and **Tailwind CSS**. The application allows users to browse the latest news headlines by category, search for news articles, and load additional articles seamlessly.
 
 ## 👨‍💻 Author
-
-**Adepoju Moradeyo**
+Adepoju E. Moradeyo
 
 ## 📸 Features
 
@@ -17,18 +16,13 @@ A modern and responsive News Aggregator application built with **React**, **Vite
 - ⚠️ Error handling for failed API requests
 - 🖼️ Placeholder image for articles without images
 - 🚫 Duplicate article filtering
-- 📊 Displays the number of articles currently shown
 
----
+How to Get API Key
+Visit https://newsapi.org/v2
+Sign up for free key
 
-## 🛠️ Built With
-
-- React
-- Vite
-- Tailwind CSS
-- NewsAPI
-
----
+Live Demo
+https://news-aggregator-pink-kappa.vercel.app/
 
 ## 📖 How It Works
 
@@ -38,13 +32,5 @@ A modern and responsive News Aggregator application built with **React**, **Vite
 - Duplicate articles are automatically filtered out.
 - Articles without images display a placeholder image instead of breaking the layout.
 - While data is loading, a spinner is displayed to improve user experience.
-
-
-
-GitHub: https://github.com/your-github-username
-
----
-
-## 📄 License
 
 This project is for educational purposes.
