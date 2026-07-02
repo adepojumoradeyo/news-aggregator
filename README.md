@@ -21,8 +21,6 @@ How to Get API Key
 Visit https://newsapi.org/v2
 Sign up for free key
 
-Live Demo
-https://news-aggregator-pink-kappa.vercel.app/
 
 ## 📖 How It Works
 
