@@ -1,20 +1,50 @@
-# React + Vite
+# 📰 Daily News - News Aggregator App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern and responsive News Aggregator application built with **React**, **Vite**, and **Tailwind CSS**. The application allows users to browse the latest news headlines by category, search for news articles, and load additional articles seamlessly.
 
-Currently, two official plugins are available:
+## 👨‍💻 Author
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+**Adepoju Moradeyo**
 
-## React Compiler
+## 📸 Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 📰 Browse top headlines by category
+- 🔍 Search news by keyword
+- ➕ Load more articles with pagination
+- 📱 Fully responsive design
+- 🌙 Dark mode toggle
+- ⏳ Loading spinner while fetching news
+- ⚠️ Error handling for failed API requests
+- 🖼️ Placeholder image for articles without images
+- 🚫 Duplicate article filtering
+- 📊 Displays the number of articles currently shown
 
-## Expanding the ESLint configuration
+---
 
-# If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🛠️ Built With
 
-# news-aggregator
+- React
+- Vite
+- Tailwind CSS
+- NewsAPI
 
-> > > > > > > 98ad510c1057b43b1e0d570edaba6c574f075147
+---
+
+## 📖 How It Works
+
+- Users can browse news by selecting different categories.
+- Searching for a keyword replaces the current articles with matching search results.
+- The **Load More** button fetches the next page of results and appends them to the existing articles.
+- Duplicate articles are automatically filtered out.
+- Articles without images display a placeholder image instead of breaking the layout.
+- While data is loading, a spinner is displayed to improve user experience.
+
+
+
+GitHub: https://github.com/your-github-username
+
+---
+
+## 📄 License
+
+This project is for educational purposes.
