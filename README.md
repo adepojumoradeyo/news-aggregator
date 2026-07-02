@@ -30,5 +30,3 @@ Sign up for free key
 - Duplicate articles are automatically filtered out.
 - Articles without images display a placeholder image instead of breaking the layout.
 - While data is loading, a spinner is displayed to improve user experience.
-
-This project is for educational purposes.
