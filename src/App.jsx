@@ -18,6 +18,7 @@ function App() {
   const [page, setPage] = useState(1);
   const [totalResults, setTotalResults] = useState(0);
   const [darkMode, setDarkMode] = useState(false);
+  const [readingList, setReadingList] = useState(() => {const saved = localStorage.getItem("readingList"); return saved ? JSON.parse(saved) : []})
 
   useEffect(() => {
     async function loadNews() {
@@ -48,6 +49,8 @@ function App() {
     loadNews();
   }, [category, searchTerm, page]);
 
+  useEffect(() => {localStorage.setItem("readingList", JSON.stringify(readingList))}, [readingList])
+
   function handleSearch() {
     setPage(1);
     setSearchTerm(searchQuery);
@@ -67,6 +70,15 @@ function App() {
     });
   }
 
+  function toggleReadingList(article) {
+    const exists = readingList.some(item => item.url === article.url)
+    if (exists) {
+      setReadingList(readingList.filter(item => item.url !== article.url))
+    } else {
+      setReadingList([...readingList, article])
+    }
+  }
+
   return (
     <>
       <div
@@ -75,7 +87,7 @@ function App() {
         }`}
       >
         <div className="p-5 ">
-          <Header darkMode={darkMode} setDarkMode={setDarkMode} />
+          <Header darkMode={darkMode} setDarkMode={setDarkMode} readingList={readingList} />
           <SearchBar
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
@@ -86,12 +98,13 @@ function App() {
           <div>
             {isloading && <Spinner />}
             {error && <Error />}
-            {!isloading && !error && <NewsList articles={articles} />}
+            {!isloading && !error && <NewsList articles={articles} totalResults={totalResults} readingList={readingList} toggleReadingList={toggleReadingList} />}
             {!error && articles.length < totalResults && (
               <LoadMoreBtn
                 handleLoadMore={handleLoadMore}
                 isLoading={isloading}
               />
+              
             )}
           </div>
         </div>

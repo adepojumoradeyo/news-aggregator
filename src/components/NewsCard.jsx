@@ -1,7 +1,9 @@
 import noImage from "/src/assets/no-image.jpg";
 
-function NewsCard({ article }) {
+function NewsCard({ article, toggleReadingList, readingList }) {
   const { title, description, urlToImage, source, publishedAt, url } = article;
+
+  const isSaved = readingList.some(item => item.url === article.url)
   return (
     <>
       <div className="bg-slate- rounded-xl shadow-md  flex flex-col h-full gap-2 p-4">
@@ -20,6 +22,8 @@ function NewsCard({ article }) {
         >
           read move →
         </a>
+
+        <button onClick={() => toggleReadingList(article)}>{isSaved ? "💓" : "🤍"}</button>
       </div>
     </>
   );

@@ -1,9 +1,9 @@
-function Header({ darkMode, setDarkMode }) {
+function Header({ darkMode, setDarkMode, readingList }) {
   return (
     <div className="flex items-center justify-between py-10 ">
-      <h1 className="flex flex-col font-bold text-3xl">
+      <h1 className="flex flex-col font-bold text-sm sm:text-3xl">
         Daily News{" "}
-        <span className="font-semibold text-xl">All latest stories</span>
+        <span className="font-semibold  sm:text-xl">All latest stories</span>
       </h1>
       <button
         onClick={() => setDarkMode(!darkMode)}

@@ -11,7 +11,7 @@ function SearchBar({ searchQuery, setSearchQuery, handleSearch }) {
         placeholder="search for news"
         value={searchQuery}
         onChange={(e) => setSearchQuery(e.target.value)}
-        className="border-none outline-none bg-transparent focus:outline-none focus:ring-0"
+        className="w-full border-none outline-none bg-transparent focus:outline-none focus:ring-0"
       />
     </div>
   );
