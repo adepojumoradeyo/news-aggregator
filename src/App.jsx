@@ -14,11 +14,15 @@ function App() {
   const [error, setError] = useState(null);
   const [category, setCategory] = useState("general");
   const [searchQuery, setSearchQuery] = useState("");
+  const [debouncedSearch, setDebouncedSearch] = useState("");
   const [searchTerm, setSearchTerm] = useState("");
   const [page, setPage] = useState(1);
   const [totalResults, setTotalResults] = useState(0);
   const [darkMode, setDarkMode] = useState(false);
-  const [readingList, setReadingList] = useState(() => {const saved = localStorage.getItem("readingList"); return saved ? JSON.parse(saved) : []})
+  const [readingList, setReadingList] = useState(() => {
+    const saved = localStorage.getItem("readingList");
+    return saved ? JSON.parse(saved) : [];
+  });
 
   useEffect(() => {
     async function loadNews() {
@@ -27,8 +31,8 @@ function App() {
 
         let data;
 
-        if (searchTerm.trim()) {
-          data = await searchNews(searchTerm, page);
+        if (debouncedSearch.trim()) {
+          data = await searchNews(debouncedSearch, page);
         } else {
           data = await getTopHeadlines(category, page);
         }
@@ -47,9 +51,18 @@ function App() {
     }
 
     loadNews();
-  }, [category, searchTerm, page]);
+  }, [category, debouncedSearch, page]);
 
-  useEffect(() => {localStorage.setItem("readingList", JSON.stringify(readingList))}, [readingList])
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedSearch(searchQuery);
+    }, 1000);
+    return () => clearTimeout(timer);
+  }, [searchQuery]);
+
+  useEffect(() => {
+    localStorage.setItem("readingList", JSON.stringify(readingList));
+  }, [readingList]);
 
   function handleSearch() {
     setPage(1);
@@ -71,11 +84,11 @@ function App() {
   }
 
   function toggleReadingList(article) {
-    const exists = readingList.some(item => item.url === article.url)
+    const exists = readingList.some((item) => item.url === article.url);
     if (exists) {
-      setReadingList(readingList.filter(item => item.url !== article.url))
+      setReadingList(readingList.filter((item) => item.url !== article.url));
     } else {
-      setReadingList([...readingList, article])
+      setReadingList([...readingList, article]);
     }
   }
 
@@ -87,7 +100,11 @@ function App() {
         }`}
       >
         <div className="p-5 ">
-          <Header darkMode={darkMode} setDarkMode={setDarkMode} readingList={readingList} />
+          <Header
+            darkMode={darkMode}
+            setDarkMode={setDarkMode}
+            readingList={readingList}
+          />
           <SearchBar
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
@@ -98,13 +115,21 @@ function App() {
           <div>
             {isloading && <Spinner />}
             {error && <Error />}
-            {!isloading && !error && <NewsList articles={articles} totalResults={totalResults} readingList={readingList} toggleReadingList={toggleReadingList} />}
-            {!error && articles.length < totalResults && (
+            {!isloading && !error && (
+              <NewsList
+                articles={articles}
+                totalResults={totalResults}
+                readingList={readingList}
+                toggleReadingList={toggleReadingList}
+              />
+            )}
+            {!error && articles.length < totalResults ? (
               <LoadMoreBtn
                 handleLoadMore={handleLoadMore}
                 isLoading={isloading}
               />
-              
+            ) : (
+              articles.length > 0 && <p className="text-center">no more news</p>
             )}
           </div>
         </div>
